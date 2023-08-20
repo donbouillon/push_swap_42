@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slistle <slistle@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 18:58:02 by slistle           #+#    #+#             */
-/*   Updated: 2023/08/20 14:13:33 by slistle          ###   ########.fr       */
+/*   Created: 2023/08/17 19:26:10 by slistle           #+#    #+#             */
+/*   Updated: 2023/08/20 12:36:37 by slistle          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	ft_error(char *msg)
 {
-	char	*tmp_arr;
-	size_t	i;
-	size_t	mult;
+	write(2, msg, ft_strlen(msg));
+	exit(1);
+}
 
-	i = 0;
-	mult = nmemb * size;
-	if (mult / size != nmemb)
-		return (NULL);
-	tmp_arr = (char *)malloc(mult);
-	if (!tmp_arr)
-		return (NULL);
-	while (i < mult)
-	{
-		tmp_arr[i] = 0;
-		i++;
-	}
-	return (tmp_arr);
+void	ft_tmp_error(char *msg, char *tmp)
+{
+	write(2, msg, ft_strlen(msg));
+	free(tmp);
+	exit(1);
 }

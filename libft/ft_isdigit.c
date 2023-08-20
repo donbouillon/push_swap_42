@@ -6,18 +6,15 @@
 /*   By: slistle <slistle@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 21:55:58 by slistle           #+#    #+#             */
-/*   Updated: 2022/11/09 21:47:14 by slistle          ###   ########.fr       */
+/*   Updated: 2023/08/20 14:11:30 by slistle          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isdigit(int digit)
 {
-	int	result;
-
-	result = 0;
 	if (digit >= '0' && digit <= '9')
 	{
-		result = 1;
+		return (0);
 	}
-	return (result);
+	return (1);
 }

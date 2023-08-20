@@ -6,7 +6,7 @@
 /*   By: slistle <slistle@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 21:27:04 by slistle           #+#    #+#             */
-/*   Updated: 2022/12/07 21:50:41 by slistle          ###   ########.fr       */
+/*   Updated: 2023/08/18 17:31:59 by slistle          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static char	*ft_memory(int i)
 {
 	char	*res_str;
 
-		res_str = (char *)malloc(i + 1);
+	res_str = (char *)malloc(i + 1);
 	if (!res_str)
 		return (NULL);
 	return (res_str);

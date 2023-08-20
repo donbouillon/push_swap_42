@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slistle <slistle@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 18:58:02 by slistle           #+#    #+#             */
-/*   Updated: 2023/08/20 14:13:33 by slistle          ###   ########.fr       */
+/*   Created: 2023/08/17 19:23:43 by slistle           #+#    #+#             */
+/*   Updated: 2023/08/20 14:12:05 by slistle          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	ft_free_lst(t_stack_node **stack)
 {
-	char	*tmp_arr;
-	size_t	i;
-	size_t	mult;
+	t_stack_node	*tmp;
+
+	tmp = *stack;
+	if (!tmp || !(*stack))
+		return ;
+	while (*stack)
+	{
+		tmp = (*stack)->next;
+		free(*stack);
+		*stack = tmp;
+	}
+}
+
+void	ft_free_str(char **str)
+{
+	int	i;
 
 	i = 0;
-	mult = nmemb * size;
-	if (mult / size != nmemb)
-		return (NULL);
-	tmp_arr = (char *)malloc(mult);
-	if (!tmp_arr)
-		return (NULL);
-	while (i < mult)
-	{
-		tmp_arr[i] = 0;
+	while (str[i])
 		i++;
-	}
-	return (tmp_arr);
+	while (i >= 0)
+		free(str[i--]);
 }

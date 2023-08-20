@@ -5,73 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: slistle <slistle@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/10 22:08:32 by slistle           #+#    #+#             */
-/*   Updated: 2023/08/11 18:25:22 by slistle          ###   ########.fr       */
+/*   Created: 2023/08/14 18:30:15 by slistle           #+#    #+#             */
+/*   Updated: 2023/08/20 16:04:09 by slistle          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void ft_error(char *msg)
+int	main(int argc, char **argv)
 {
-	ft_printf("%s\n", msg);
-	exit(1);
-}
+	t_stack_node	*a;
+	t_stack_node	*b;
 
-t_stack_list	*ft_find_last(t_stack_list *lst)
-{
-	if(!lst)
-		return(NULL);
-	while (lst)
-	{
-		if (lst->next == NULL)
-			return (lst);
-		lst = lst->next;
-	}
-	return (lst);
-}
-
-t_stack_list	*ft_new_elem(int nbr)
-{
-	t_stack_list	*lst;
-
-	lst = malloc(sizeof(t_stack_list));
-	if (!lst)
-		return (NULL);
-	lst->nbr = nbr;
-	lst->next = NULL;
-	return (lst);
-}
-
-void ft_add_back(t_stack_list **lst, t_stack_list *new)
-{
-	if (!(*lst))
-		*lst = new;
-	else
-		ft_find_last(*lst)->next = new;
-}
-
-int main(int argc, char **argv)
-{
-	t_stack_list	*a;
-	// t_stack_list	*b;
-	t_stack_list	*new;
-	int				i;
-	int				nbr;
-	
 	a = NULL;
-	i = 0;
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
+	b = NULL;
+	if (argc == 1)
 		return (1);
-	else if (argc == 2)
-		argv = ft_split(argv[1], ' ');
-	while (argv[i] != NULL)
+	check_nbs(argc, argv);
+	a_init(argv, argc, &a);
+	if (is_sorted(a) == 0)
 	{
-		nbr = ft_atoi(argv[i]);
-		new = ft_new_elem(nbr);
-		ft_add_back(&a, new);
-		ft_printf("%d\n", new->nbr);
-		i++;
+		ft_free_lst(&a);
+		return (1);
 	}
+	if (ft_lst_size(a) <= 3)
+		three_sort(&a);
+	else if (ft_lst_size(a) == 4)
+		four_sort(&a, &b);
+	else if (ft_lst_size(a) == 5)
+		five_sort(&a, &b);
+	else
+		sorting(&a, &b);
+	ft_free_lst(&a);
+	ft_free_lst(&b);
 	return (0);
 }
